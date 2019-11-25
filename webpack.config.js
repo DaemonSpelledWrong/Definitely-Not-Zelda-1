@@ -45,6 +45,14 @@ module.exports = {
     new webpack.DefinePlugin({
       'typeof CANVAS_RENDERER': JSON.stringify(true),
       'typeof WEBGL_RENDERER': JSON.stringify(true)
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'production-dependencies',
+      filename: 'production-dependencies.bundle.js'
     })
-  ]
+  ],
+
+  devServer: {
+    contentBase: path.resolve(__dirname, 'build')
+  }
 }
