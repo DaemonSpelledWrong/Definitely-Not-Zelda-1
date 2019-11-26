@@ -1,0 +1,50 @@
+{
+  "parser": "babel-eslint",
+  "extends": "standard",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "import/no-unresolved": [
+      2
+    ],
+    "semi": 0,
+    "space-before-function-paren": 0,
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+    "no-multiple-empty-lines": [
+      2,
+      {
+        "max": 2
+      }
+    ],
+    "max-len": [
+      2,
+      {
+        "tabWidth": 2,
+        "code": 120
+      }
+    ],
+    "object-curly-newline": [
+      2,
+      {
+        "multiline": true
+      }
+    ]
+  },
+  "globals": {
+    "__DEV__": true
+  }
+}

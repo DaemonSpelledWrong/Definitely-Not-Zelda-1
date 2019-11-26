@@ -1,58 +1,46 @@
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const webpack = require('webpack');
+var path = require('path')
+var webpack = require('webpack')
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: './src/index.js'
+    app: [path.resolve(__dirname, 'src/main.js')],
+    vendor: ['phaser']
   },
-
+  mode: 'development',
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'app.bundle.js'
+    pathinfo: true,
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: './dist/',
+    filename: 'bundle.js'
   },
-
+  watch: true,
+  plugins: [
+    new webpack.DefinePlugin({
+      CANVAS_RENDERER: JSON.stringify(true),
+      WEBGL_RENDERER: JSON.stringify(true)
+    }),
+    new BrowserSyncPlugin({
+      host: process.env.IP || 'localhost',
+      port: process.env.PORT || 3000,
+      server: {
+        baseDir: ['./', './build']
+      }
+    })
+  ],
   module: {
     rules: [
       {
         test: /\.js$/,
-        include: path.resolve(__dirname, 'src/'),
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
-          }
-        }
+        use: ['babel-loader'],
+        include: path.join(__dirname, 'src')
       }
     ]
   },
-
-  devServer: {
-    contentBase: path.resolve(__dirname, 'build'),
-  },
-
-  plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, 'index.html'),
-        to: path.resolve(__dirname, 'build')
-      },
-      {
-        from: path.resolve(__dirname, 'assets', '**', '*'),
-        to: path.resolve(__dirname, 'build')
-      }
-    ]),
-    new webpack.DefinePlugin({
-      'typeof CANVAS_RENDERER': JSON.stringify(true),
-      'typeof WEBGL_RENDERER': JSON.stringify(true)
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'production-dependencies',
-      filename: 'production-dependencies.bundle.js'
-    })
-  ],
-
-  devServer: {
-    contentBase: path.resolve(__dirname, 'build')
+  optimization: {
+    splitChunks: {
+      name: 'vendor',
+      chunks: 'all'
+    }
   }
 }
