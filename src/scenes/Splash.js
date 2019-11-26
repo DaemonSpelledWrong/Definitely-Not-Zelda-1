@@ -1,4 +1,4 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 
 export default class extends Phaser.Scene {
   constructor () {
@@ -6,14 +6,14 @@ export default class extends Phaser.Scene {
   }
 
   preload () {
-    //
-    // load your assets
-    //
-    this.load.image('mushroom', 'assets/images/mushroom2.png')
+    this.add.text(100, 100, 'Loading the Game...');
+    this.load.image('OverworldTiles', 'assets/images/Asets.png');
+    this.load.tilemapTiledJSON('Overworld', 'assets/maps/Initial_map.json');
+    this.load.image('mushroom', 'assets/images/mushroom2.png');
   }
 
   create () {
-    this.scene.start('GameScene')
+    this.scene.start('OverworldScene');
   }
 
   update () {}
