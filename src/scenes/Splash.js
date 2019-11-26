@@ -9,7 +9,6 @@ export default class extends Phaser.Scene {
     this.add.text(100, 100, 'Loading the Game...');
     this.load.image('OverworldTiles', 'assets/images/Asets.png');
     this.load.tilemapTiledJSON('Overworld', 'assets/maps/Initial_map.json');
-    this.load.image('mushroom', 'assets/images/mushroom2.png');
   }
 
   create () {
