@@ -8,7 +8,7 @@ export default class Player {
   }
 
   init() {
-    this.player = this.gameContext.physics.add.sprite(200, 200, '');
+    this.player = this.gameContext.physics.add.sprite(193, 280, '').setScale(0.65);
     this.player.setCollideWorldBounds(true);
   }
 
@@ -25,17 +25,17 @@ export default class Player {
     } = this.keyboardArrows;
 
     if (left.isDown && !right.isDown) {
-      this.player.setVelocityX(-110);
+      this.player.setVelocityX(-90);
     } else if (right.isDown && !left.isDown) {
-      this.player.setVelocityX(110);
+      this.player.setVelocityX(90);
     } else {
       this.player.setVelocityX(0);
     }
 
     if (up.isDown && !down.isDown) {
-      this.player.setVelocityY(-110);
+      this.player.setVelocityY(-90);
     } else if (down.isDown && !up.isDown) {
-      this.player.setVelocityY(110);
+      this.player.setVelocityY(90);
     } else {
       this.player.setVelocityY(0);
     }
