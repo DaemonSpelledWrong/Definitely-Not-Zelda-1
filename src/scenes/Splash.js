@@ -7,8 +7,8 @@ export default class extends Phaser.Scene {
 
   preload () {
     this.add.text(100, 100, 'Loading the Game...');
-    this.load.image('OverworldTiles', 'assets/images/Asets.png');
-    this.load.tilemapTiledJSON('Overworld', 'assets/maps/Initial_map.json');
+    this.load.image('OverworldTiles', 'assets/images/tf_jungle_tileset.png');
+    this.load.tilemapTiledJSON('Overworld', 'assets/maps/Overworld.json');
   }
 
   create () {
